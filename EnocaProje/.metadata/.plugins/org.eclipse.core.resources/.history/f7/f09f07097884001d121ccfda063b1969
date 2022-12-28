@@ -1,0 +1,148 @@
+package com.enocaProject.demo.services.concretes;
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.enocaProject.demo.entities.Company;
+import com.enocaProject.demo.entities.Employee;
+import com.enocaProject.demo.repository.CompanyRepository;
+import com.enocaProject.demo.services.abstracts.ICompanyService;
+
+
+@Service
+public class CompanyManager implements ICompanyService {
+
+	
+	private CompanyRepository companyRepository;
+	
+	@Autowired
+	public CompanyManager(CompanyRepository companyRepository) {
+		this.companyRepository = companyRepository;
+	}
+	
+	
+	
+	@Override
+	public List<Company> getAll() {
+		
+		return this.companyRepository.findAll();
+	}
+
+	@Override
+	public Company add(Company company)   {
+		
+		return this.companyRepository.save(company);
+		
+	}
+
+	@Override
+	public Company update(Long id, Company company) {
+		
+		
+		
+		Optional<Company> companyList = this.companyRepository.findById(id);
+		Company addCompany = new Company();
+		
+		if(companyList.isPresent()) {
+			Company company1 = companyList.get();
+			this.companyRepository.deleteById(company1.getCompany_id());
+			addCompany.setCompany_id(company.getCompany_id());
+			addCompany.setCompany_name(company.getCompany_name());
+			addCompany.setEmployees(company.getEmployees());
+			this.companyRepository.save(addCompany);
+			return addCompany;
+		}else {
+			return null;
+		}
+		
+	  
+		
+	  //Çalışan Kod
+		
+      /*Company foundCompany = this.companyRepository.findById(id).get();
+      Company addCompany = new Company();	
+		
+		if(foundCompany.getCompany_id() == id) 
+		{
+			this.companyRepository.delete(foundCompany);
+			addCompany.setCompany_id(company.getCompany_id());	
+			addCompany.setCompany_name(company.getCompany_name());
+			addCompany.setEmployees(company.getEmployees());
+			this.companyRepository.save(addCompany);
+			return addCompany;
+			
+		}
+		else {
+			return null;
+		}*/
+		
+		
+	  
+	}
+
+	
+	/* 
+	 * 
+	 * public Employee delete(Long id) {
+		
+		Optional<Employee> foundEmployee = this.employeeRepository.findById(id);
+		
+		if(foundEmployee.isPresent()) {
+			Employee employee1 = foundEmployee.get();
+			this.employeeRepository.deleteById(employee1.getId());
+			return employee1;
+		}else {
+			return null;
+		}
+	 * 
+	 * */
+
+
+	@Override
+	public Company delete(Long id) {
+		Optional<Company> foundCompany = this.companyRepository.findById(id);
+		
+		if (foundCompany.isPresent()) {
+			Company company1 = foundCompany.get();
+			this.companyRepository.deleteById(company1.getCompany_id());
+		} else {
+
+		}
+				
+			}
+			
+			
+			
+		
+		
+	}
+
+
+
+	
+
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

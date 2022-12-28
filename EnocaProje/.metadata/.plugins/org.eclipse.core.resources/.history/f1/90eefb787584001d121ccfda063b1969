@@ -1,0 +1,128 @@
+package com.enocaProject.demo.services.concretes;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.enocaProject.demo.entities.Company;
+import com.enocaProject.demo.entities.Employee;
+import com.enocaProject.demo.repository.EmployeeRepository;
+import com.enocaProject.demo.services.abstracts.IEmployeeService;
+
+@Service
+public class EmployeeManager implements IEmployeeService {
+
+	
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	public EmployeeManager(EmployeeRepository employeeRepository) {
+		this.employeeRepository = employeeRepository;
+	}
+	
+	@Override
+	public List<Employee> getAll() {
+		
+		return employeeRepository.findAll();
+	}
+
+	@Override
+	public Employee add(Employee employee) {
+		Employee employee1 = new Employee();
+		employee1.setId(employee.getId());
+		employee1.setName(employee1.getName());
+		employee1.setLastName(employee.getLastName());
+		employee1.setCompany(employee.getCompany());
+ 		return this.employeeRepository.save(employee1);
+		
+	}
+
+	@Override
+	public Employee update(Long id, Employee employee) {
+		
+		Optional<Employee> employees = this.employeeRepository.findById(id);
+		Employee addEmployee = new Employee();
+		
+		if(employees.isPresent()) {
+			Employee employee1 = employees.get();
+			this.employeeRepository.deleteById(employee1.getId());
+			addEmployee.setId(employee.getId());
+			addEmployee.setName(employee.getName());
+			addEmployee.setLastName(employee.getLastName());
+			addEmployee.setCompany(employee.getCompany());
+			this.employeeRepository.save(addEmployee);
+			return addEmployee;
+		}else {
+			return null;
+		}
+		
+		
+	}
+	
+	
+
+	@Override
+	public Employee delete(Long id) {
+		
+		Optional<Employee> foundEmployee = this.employeeRepository.findById(id);
+		
+		if(foundEmployee.isPresent()) {
+			Employee employee1 = foundEmployee.get();
+		}
+		
+		return null;
+		
+		
+		
+		
+		/*List<Employee> employeeList = new ArrayList<Employee>();
+		employeeList = this.employeeRepository.findAll();
+		for (Employee employee : employeeList) {
+			if(employee.getId() == id) {
+				this.employeeRepository.deleteById(id);
+				
+			}
+			
+		}*/
+		
+		
+		
+		
+		
+		
+			
+	}
+	
+	
+	
+	
+	
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+

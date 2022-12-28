@@ -1,0 +1,15 @@
+package com.enocaProject.demo.dto;
+
+import com.enocaProject.demo.entities.Company;
+
+public class EmployeeDTO {
+	
+	private Long id;
+	
+	private String name;
+	
+	private String lastName;
+	
+	private Company company;
+
+}

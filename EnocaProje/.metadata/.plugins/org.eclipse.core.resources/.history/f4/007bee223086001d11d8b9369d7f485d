@@ -1,0 +1,15 @@
+package com.enocaProject.demo.services.abstracts;
+
+import java.util.List;
+
+
+import com.enocaProject.demo.entities.Employee;
+
+public interface IEmployeeService {
+	
+	List<Employee> getAll();
+	Employee add(Employee employee);
+	Employee update(Long id,Employee employee);
+	Employee delete(Long id);
+
+}

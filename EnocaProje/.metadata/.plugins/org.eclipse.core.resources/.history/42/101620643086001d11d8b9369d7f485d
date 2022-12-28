@@ -1,0 +1,52 @@
+package com.enocaProject.demo.services.concretes;
+
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import com.enocaProject.demo.entities.Employee;
+import com.enocaProject.demo.repository.EmployeeRepository;
+import com.enocaProject.demo.services.abstracts.IEmployeeService;
+
+@Service
+public class EmployeeManager implements IEmployeeService {
+
+	
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	public EmployeeManager(EmployeeRepository employeeRepository) {
+		this.employeeRepository = employeeRepository;
+	}
+	
+	
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+

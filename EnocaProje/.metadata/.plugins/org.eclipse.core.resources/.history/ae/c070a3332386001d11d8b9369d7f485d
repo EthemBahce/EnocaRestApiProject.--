@@ -1,0 +1,5 @@
+package com.enocaProject.demo.dto.requests;
+
+public class CompanyRequestsDTO {
+
+}

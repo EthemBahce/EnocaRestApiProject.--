@@ -1,0 +1,5 @@
+package com.enocaProject.demo.dto.responses;
+
+public class CompanyResponsesDTO {
+
+}

@@ -1,0 +1,19 @@
+package com.enocaProject.demo.services.abstracts;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.enocaProject.demo.entities.Company;
+
+@Service
+public interface ICompanyService {
+	
+	List<Company> getAll();
+	Company add(Company company);
+	Company update(Long id,Company company);
+	int delete(int id);
+	
+	
+
+}

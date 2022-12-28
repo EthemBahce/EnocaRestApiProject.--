@@ -1,0 +1,74 @@
+package com.enocaProject.demo.controllers;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+import com.enocaProject.demo.entities.Employee;
+import com.enocaProject.demo.services.abstracts.IEmployeeService;
+
+@RestController
+@RequestMapping("/employee")
+public class EmployeeController {
+	
+	private IEmployeeService employeeService;
+	
+	@Autowired
+	public EmployeeController(IEmployeeService employeeService) {
+		this.employeeService = employeeService;
+	}
+	
+	
+	@GetMapping("/getall")
+	public List<Employee> getAll(){
+		return this.employeeService.getAll();
+		
+	}
+	
+	/*@PostMapping("/add")
+	public void add(@RequestBody Employee employee) {
+		this.employeeService.add(employee);
+	}*/
+	
+	
+	@PostMapping("/add")
+	ResponseEntity<Employee> save(@Valid @RequestBody Employee employee){
+		return ResponseEntity.ok(employee);
+	}
+	
+	/*@PutMapping("/update/{id}")
+	public void update(@PathVariable("id") Long id, @RequestBody Employee employee) {
+		 this.employeeService.update(id, employee);
+	}*/
+	
+	@PutMapping("/update/{id}")
+	ResponseEntity<Employee> update(@PathVariable("id") Long id , @Valid @RequestBody Employee employee){
+		return ResponseEntity.ok(employee);
+	}
+	
+	/*@DeleteMapping("/delete/{id}")
+	public void delete(@PathVariable("id") Long id) {
+		this.employeeService.delete(id);
+	}*/
+	
+	@DeleteMapping("/delete/{id}")
+	public int delete(@Valid @PathVariable("id") int id) {
+		return this.employeeService.delete(id);
+	}
+	
+	
+	
+
+}
